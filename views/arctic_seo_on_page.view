@@ -1,0 +1,271 @@
+<?php
+$view = new view();
+$view->name = 'arctic_seo_on_page';
+$view->description = '';
+$view->tag = 'default';
+$view->base_table = 'node';
+$view->human_name = 'Arctic: SEO - On Page';
+$view->core = 7;
+$view->api_version = '3.0';
+$view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+/* Display: Master */
+$handler = $view->new_display('default', 'Master', 'default');
+$handler->display->display_options['title'] = 'On Page';
+$handler->display->display_options['use_ajax'] = TRUE;
+$handler->display->display_options['use_more_always'] = FALSE;
+$handler->display->display_options['access']['type'] = 'perm';
+$handler->display->display_options['cache']['type'] = 'none';
+$handler->display->display_options['query']['type'] = 'views_query';
+$handler->display->display_options['exposed_form']['type'] = 'basic';
+$handler->display->display_options['pager']['type'] = 'none';
+$handler->display->display_options['style_plugin'] = 'editableviews_table';
+$handler->display->display_options['style_options']['columns'] = array(
+  'type' => 'type',
+  'nid' => 'nid',
+  'path' => 'path',
+  'title' => 'title',
+  'field_url_alias_editable' => 'field_url_alias_editable',
+  'field_page_title_editable' => 'field_page_title_editable',
+  'field_meta_description_editable' => 'field_meta_description_editable',
+  'field_open_graph_image_editable' => 'field_open_graph_image_editable',
+  'delete_node' => 'delete_node',
+  'edit_node' => 'edit_node',
+  'view_node' => 'view_node',
+  'created' => 'created',
+  'changed' => 'changed',
+  'nothing' => 'nothing',
+);
+$handler->display->display_options['style_options']['default'] = 'changed';
+$handler->display->display_options['style_options']['info'] = array(
+  'type' => array(
+    'sortable' => 1,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'nid' => array(
+    'sortable' => 1,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'path' => array(
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'title' => array(
+    'sortable' => 1,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'field_url_alias_editable' => array(
+    'sortable' => 1,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'field_page_title_editable' => array(
+    'sortable' => 1,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'field_meta_description_editable' => array(
+    'sortable' => 1,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'field_open_graph_image_editable' => array(
+    'sortable' => 1,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'delete_node' => array(
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'edit_node' => array(
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'view_node' => array(
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'created' => array(
+    'sortable' => 1,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'changed' => array(
+    'sortable' => 1,
+    'default_sort_order' => 'desc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'nothing' => array(
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+);
+$handler->display->display_options['style_options']['sticky'] = TRUE;
+$handler->display->display_options['style_options']['batch'] = TRUE;
+$handler->display->display_options['style_options']['batch_size'] = '1000';
+/* Field: Content: Path */
+$handler->display->display_options['fields']['path']['id'] = 'path';
+$handler->display->display_options['fields']['path']['table'] = 'node';
+$handler->display->display_options['fields']['path']['field'] = 'path';
+$handler->display->display_options['fields']['path']['exclude'] = TRUE;
+$handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
+/* Field: Content: Title */
+$handler->display->display_options['fields']['title']['id'] = 'title';
+$handler->display->display_options['fields']['title']['table'] = 'node';
+$handler->display->display_options['fields']['title']['field'] = 'title';
+$handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['title']['alter']['text'] = '[title]<br>
+[path]';
+$handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+/* Field: Content: url alias (editable) */
+$handler->display->display_options['fields']['field_url_alias_editable']['id'] = 'field_url_alias_editable';
+$handler->display->display_options['fields']['field_url_alias_editable']['table'] = 'field_data_field_url_alias';
+$handler->display->display_options['fields']['field_url_alias_editable']['field'] = 'field_url_alias_editable';
+$handler->display->display_options['fields']['field_url_alias_editable']['label'] = 'Alias';
+$handler->display->display_options['fields']['field_url_alias_editable']['widget_type'] = '0';
+$handler->display->display_options['fields']['field_url_alias_editable']['suppress_label'] = 1;
+$handler->display->display_options['fields']['field_url_alias_editable']['suppress_description'] = 1;
+/* Field: Content: page title (editable) */
+$handler->display->display_options['fields']['field_page_title_editable']['id'] = 'field_page_title_editable';
+$handler->display->display_options['fields']['field_page_title_editable']['table'] = 'field_data_field_page_title';
+$handler->display->display_options['fields']['field_page_title_editable']['field'] = 'field_page_title_editable';
+$handler->display->display_options['fields']['field_page_title_editable']['label'] = 'Title';
+$handler->display->display_options['fields']['field_page_title_editable']['widget_type'] = '0';
+$handler->display->display_options['fields']['field_page_title_editable']['suppress_label'] = 1;
+$handler->display->display_options['fields']['field_page_title_editable']['suppress_description'] = 1;
+/* Field: Content: meta description (editable) */
+$handler->display->display_options['fields']['field_meta_description_editable']['id'] = 'field_meta_description_editable';
+$handler->display->display_options['fields']['field_meta_description_editable']['table'] = 'field_data_field_meta_description';
+$handler->display->display_options['fields']['field_meta_description_editable']['field'] = 'field_meta_description_editable';
+$handler->display->display_options['fields']['field_meta_description_editable']['label'] = 'Description';
+$handler->display->display_options['fields']['field_meta_description_editable']['widget_type'] = '0';
+$handler->display->display_options['fields']['field_meta_description_editable']['suppress_label'] = 1;
+$handler->display->display_options['fields']['field_meta_description_editable']['suppress_description'] = 1;
+/* Field: Content: open graph image (editable) */
+$handler->display->display_options['fields']['field_open_graph_image_editable']['id'] = 'field_open_graph_image_editable';
+$handler->display->display_options['fields']['field_open_graph_image_editable']['table'] = 'field_data_field_open_graph_image';
+$handler->display->display_options['fields']['field_open_graph_image_editable']['field'] = 'field_open_graph_image_editable';
+$handler->display->display_options['fields']['field_open_graph_image_editable']['label'] = 'Image';
+$handler->display->display_options['fields']['field_open_graph_image_editable']['click_sort_column'] = 'fid';
+$handler->display->display_options['fields']['field_open_graph_image_editable']['settings'] = array(
+  'image_style' => 'img60x50',
+  'image_link' => '',
+);
+$handler->display->display_options['fields']['field_open_graph_image_editable']['widget_type'] = '0';
+$handler->display->display_options['fields']['field_open_graph_image_editable']['suppress_label'] = 1;
+$handler->display->display_options['fields']['field_open_graph_image_editable']['suppress_description'] = 1;
+/* Field: Content: Delete link */
+$handler->display->display_options['fields']['delete_node']['id'] = 'delete_node';
+$handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
+$handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
+$handler->display->display_options['fields']['delete_node']['label'] = '';
+$handler->display->display_options['fields']['delete_node']['exclude'] = TRUE;
+$handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['delete_node']['text'] = 'Delete';
+/* Field: Content: Edit link */
+$handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+$handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+$handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+$handler->display->display_options['fields']['edit_node']['label'] = '';
+$handler->display->display_options['fields']['edit_node']['exclude'] = TRUE;
+$handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['edit_node']['text'] = 'Edit';
+/* Field: Content: Link */
+$handler->display->display_options['fields']['view_node']['id'] = 'view_node';
+$handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
+$handler->display->display_options['fields']['view_node']['field'] = 'view_node';
+$handler->display->display_options['fields']['view_node']['label'] = '';
+$handler->display->display_options['fields']['view_node']['exclude'] = TRUE;
+$handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['view_node']['text'] = 'View';
+/* Field: Content: Post date */
+$handler->display->display_options['fields']['created']['id'] = 'created';
+$handler->display->display_options['fields']['created']['table'] = 'node';
+$handler->display->display_options['fields']['created']['field'] = 'created';
+$handler->display->display_options['fields']['created']['label'] = 'Created';
+$handler->display->display_options['fields']['created']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['created']['date_format'] = 'short';
+$handler->display->display_options['fields']['created']['second_date_format'] = 'long';
+/* Field: Content: Updated date */
+$handler->display->display_options['fields']['changed']['id'] = 'changed';
+$handler->display->display_options['fields']['changed']['table'] = 'node';
+$handler->display->display_options['fields']['changed']['field'] = 'changed';
+$handler->display->display_options['fields']['changed']['label'] = 'Updated';
+$handler->display->display_options['fields']['changed']['date_format'] = 'short';
+$handler->display->display_options['fields']['changed']['second_date_format'] = 'long';
+/* Field: Global: Custom text */
+$handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+$handler->display->display_options['fields']['nothing']['table'] = 'views';
+$handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+$handler->display->display_options['fields']['nothing']['label'] = 'Operations';
+$handler->display->display_options['fields']['nothing']['alter']['text'] = '[view_node] [edit_node] [delete_node]';
+/* Filter criterion: Content: Published */
+$handler->display->display_options['filters']['status']['id'] = 'status';
+$handler->display->display_options['filters']['status']['table'] = 'node';
+$handler->display->display_options['filters']['status']['field'] = 'status';
+$handler->display->display_options['filters']['status']['value'] = 1;
+$handler->display->display_options['filters']['status']['group'] = 1;
+$handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+/* Filter criterion: Content: Type */
+$handler->display->display_options['filters']['type']['id'] = 'type';
+$handler->display->display_options['filters']['type']['table'] = 'node';
+$handler->display->display_options['filters']['type']['field'] = 'type';
+$handler->display->display_options['filters']['type']['value'] = array(
+  'all' => 'all',
+  'article' => 'article',
+  'page' => 'page',
+  'dexp_portfolio' => 'dexp_portfolio',
+  'review' => 'review',
+  'webform' => 'webform',
+);
+$handler->display->display_options['filters']['type']['exposed'] = TRUE;
+$handler->display->display_options['filters']['type']['expose']['operator_id'] = 'type_op';
+$handler->display->display_options['filters']['type']['expose']['label'] = 'Type';
+$handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
+$handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
+$handler->display->display_options['filters']['type']['expose']['multiple'] = TRUE;
+$handler->display->display_options['filters']['type']['expose']['remember_roles'] = array(
+  2 => '2',
+  1 => 0,
+  3 => 0,
+  4 => 0,
+);
+$handler->display->display_options['filters']['type']['expose']['reduce'] = TRUE;
+
+/* Display: Page */
+$handler = $view->new_display('page', 'Page', 'page');
+$handler->display->display_options['path'] = 'admin/arctic/seo/on-page';
+$handler->display->display_options['menu']['type'] = 'normal';
+$handler->display->display_options['menu']['title'] = 'On Page';
+$handler->display->display_options['menu']['weight'] = '0';
+$handler->display->display_options['menu']['name'] = 'management';
+$handler->display->display_options['menu']['context'] = 0;
+$handler->display->display_options['menu']['context_only_inline'] = 0;

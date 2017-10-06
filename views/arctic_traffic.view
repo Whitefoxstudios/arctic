@@ -1,0 +1,737 @@
+<?php
+$view = new view();
+$view->name = 'arctic_traffic';
+$view->description = '';
+$view->tag = 'default';
+$view->base_table = 'google_analytics';
+$view->human_name = 'Arctic: Traffic';
+$view->core = 7;
+$view->api_version = '3.0';
+$view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+/* Display: Master */
+$handler = $view->new_display('default', 'Master', 'default');
+$handler->display->display_options['title'] = 'Arctic: Traffic';
+$handler->display->display_options['use_ajax'] = TRUE;
+$handler->display->display_options['use_more_always'] = FALSE;
+$handler->display->display_options['access']['type'] = 'perm';
+$handler->display->display_options['access']['perm'] = 'access google analytics reports';
+$handler->display->display_options['cache']['type'] = 'time';
+$handler->display->display_options['cache']['results_lifespan'] = 'custom';
+$handler->display->display_options['cache']['results_lifespan_custom'] = '259200';
+$handler->display->display_options['cache']['output_lifespan'] = 'custom';
+$handler->display->display_options['cache']['output_lifespan_custom'] = '259200';
+$handler->display->display_options['query']['type'] = 'views_query';
+$handler->display->display_options['exposed_form']['type'] = 'basic';
+$handler->display->display_options['pager']['type'] = 'none';
+$handler->display->display_options['style_plugin'] = 'chart';
+$handler->display->display_options['style_options']['type'] = 'areaspline';
+$handler->display->display_options['style_options']['library'] = '';
+$handler->display->display_options['style_options']['label_field'] = 'date';
+$handler->display->display_options['style_options']['data_fields'] = array(
+  'pageviews' => 'pageviews',
+  'date' => 'date',
+);
+$handler->display->display_options['style_options']['field_colors'] = array(
+  'pageviews' => '#2196f3',
+  'date' => '#2f7ed8',
+);
+$handler->display->display_options['style_options']['legend_position'] = '';
+$handler->display->display_options['style_options']['width'] = '';
+$handler->display->display_options['style_options']['height'] = '300';
+$handler->display->display_options['style_options']['xaxis_title'] = 'Date';
+$handler->display->display_options['style_options']['xaxis_labels_rotation'] = '30';
+$handler->display->display_options['style_options']['yaxis_labels_rotation'] = '0';
+/* Field: Page Tracking: Pageviews */
+$handler->display->display_options['fields']['pageviews']['id'] = 'pageviews';
+$handler->display->display_options['fields']['pageviews']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['pageviews']['field'] = 'pageviews';
+$handler->display->display_options['fields']['pageviews']['precision'] = '0';
+/* Field: Time: Date */
+$handler->display->display_options['fields']['date']['id'] = 'date';
+$handler->display->display_options['fields']['date']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['date']['field'] = 'date';
+$handler->display->display_options['fields']['date']['date_format'] = 'custom';
+$handler->display->display_options['fields']['date']['custom_date_format'] = 'm-d-Y';
+$handler->display->display_options['fields']['date']['second_date_format'] = 'long';
+/* Filter criterion: Google Analytics: Start date of report */
+$handler->display->display_options['filters']['start_date']['id'] = 'start_date';
+$handler->display->display_options['filters']['start_date']['table'] = 'google_analytics';
+$handler->display->display_options['filters']['start_date']['field'] = 'start_date';
+$handler->display->display_options['filters']['start_date']['value']['value'] = '-31 days';
+$handler->display->display_options['filters']['start_date']['value']['type'] = 'offset';
+$handler->display->display_options['filters']['start_date']['group'] = 1;
+$handler->display->display_options['filters']['start_date']['expose']['operator'] = FALSE;
+/* Filter criterion: Google Analytics: End date of report */
+$handler->display->display_options['filters']['end_date']['id'] = 'end_date';
+$handler->display->display_options['filters']['end_date']['table'] = 'google_analytics';
+$handler->display->display_options['filters']['end_date']['field'] = 'end_date';
+$handler->display->display_options['filters']['end_date']['value']['value'] = '-1 day';
+$handler->display->display_options['filters']['end_date']['value']['type'] = 'offset';
+$handler->display->display_options['filters']['end_date']['group'] = 1;
+$handler->display->display_options['filters']['end_date']['expose']['operator'] = FALSE;
+
+/* Display: Pageviews Last 30 Days */
+$handler = $view->new_display('block', 'Pageviews Last 30 Days', 'arctic_traffic_pageviews');
+$handler->display->display_options['defaults']['title'] = FALSE;
+$handler->display->display_options['defaults']['style_plugin'] = FALSE;
+$handler->display->display_options['style_plugin'] = 'chart';
+$handler->display->display_options['style_options']['type'] = 'areaspline';
+$handler->display->display_options['style_options']['library'] = '';
+$handler->display->display_options['style_options']['label_field'] = 'date';
+$handler->display->display_options['style_options']['data_fields'] = array(
+  'pageviews' => 'pageviews',
+  'date' => 'date',
+);
+$handler->display->display_options['style_options']['field_colors'] = array(
+  'pageviews' => '#2196f3',
+  'date' => '#2f7ed8',
+);
+$handler->display->display_options['style_options']['title'] = 'Pageviews';
+$handler->display->display_options['style_options']['legend_position'] = 'top';
+$handler->display->display_options['style_options']['width'] = '';
+$handler->display->display_options['style_options']['height'] = '300';
+$handler->display->display_options['style_options']['xaxis_title'] = 'Date';
+$handler->display->display_options['style_options']['xaxis_labels_rotation'] = '30';
+$handler->display->display_options['style_options']['yaxis_labels_rotation'] = '0';
+$handler->display->display_options['defaults']['style_options'] = FALSE;
+$handler->display->display_options['defaults']['row_plugin'] = FALSE;
+$handler->display->display_options['defaults']['row_options'] = FALSE;
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: Page Tracking: Pageviews */
+$handler->display->display_options['fields']['pageviews']['id'] = 'pageviews';
+$handler->display->display_options['fields']['pageviews']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['pageviews']['field'] = 'pageviews';
+$handler->display->display_options['fields']['pageviews']['label'] = 'Last 30 Days';
+$handler->display->display_options['fields']['pageviews']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['pageviews']['hide_alter_empty'] = FALSE;
+$handler->display->display_options['fields']['pageviews']['precision'] = '0';
+/* Field: Time: Date */
+$handler->display->display_options['fields']['date']['id'] = 'date';
+$handler->display->display_options['fields']['date']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['date']['field'] = 'date';
+$handler->display->display_options['fields']['date']['hide_empty'] = TRUE;
+$handler->display->display_options['fields']['date']['empty_zero'] = TRUE;
+$handler->display->display_options['fields']['date']['hide_alter_empty'] = FALSE;
+$handler->display->display_options['fields']['date']['date_format'] = 'custom';
+$handler->display->display_options['fields']['date']['custom_date_format'] = 'm-d-Y';
+$handler->display->display_options['fields']['date']['second_date_format'] = 'long';
+$handler->display->display_options['defaults']['sorts'] = FALSE;
+/* Sort criterion: Time: Date */
+$handler->display->display_options['sorts']['date']['id'] = 'date';
+$handler->display->display_options['sorts']['date']['table'] = 'google_analytics';
+$handler->display->display_options['sorts']['date']['field'] = 'date';
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: Google Analytics: Start date of report */
+$handler->display->display_options['filters']['start_date']['id'] = 'start_date';
+$handler->display->display_options['filters']['start_date']['table'] = 'google_analytics';
+$handler->display->display_options['filters']['start_date']['field'] = 'start_date';
+$handler->display->display_options['filters']['start_date']['value']['value'] = '-31 days';
+$handler->display->display_options['filters']['start_date']['value']['type'] = 'offset';
+$handler->display->display_options['filters']['start_date']['group'] = 1;
+$handler->display->display_options['filters']['start_date']['expose']['operator'] = FALSE;
+/* Filter criterion: Google Analytics: End date of report */
+$handler->display->display_options['filters']['end_date']['id'] = 'end_date';
+$handler->display->display_options['filters']['end_date']['table'] = 'google_analytics';
+$handler->display->display_options['filters']['end_date']['field'] = 'end_date';
+$handler->display->display_options['filters']['end_date']['value']['value'] = '-1 days';
+$handler->display->display_options['filters']['end_date']['value']['type'] = 'offset';
+$handler->display->display_options['filters']['end_date']['group'] = 1;
+$handler->display->display_options['filters']['end_date']['expose']['operator'] = FALSE;
+$handler->display->display_options['block_description'] = 'Arctic: Traffic - Pageviews Total';
+
+/* Display: Last Year */
+$handler = $view->new_display('chart', 'Last Year', 'compare_year_views');
+$handler->display->display_options['defaults']['title'] = FALSE;
+$handler->display->display_options['title'] = 'Last Year';
+$handler->display->display_options['pager']['type'] = 'none';
+$handler->display->display_options['pager']['options']['offset'] = '0';
+$handler->display->display_options['defaults']['style_plugin'] = FALSE;
+$handler->display->display_options['style_plugin'] = 'chart_extension';
+$handler->display->display_options['style_options']['type'] = 'spline';
+$handler->display->display_options['style_options']['library'] = '';
+$handler->display->display_options['style_options']['label_field'] = 'date';
+$handler->display->display_options['style_options']['data_fields'] = array(
+  'pageviews' => 'pageviews',
+  'date' => 0,
+);
+$handler->display->display_options['style_options']['field_colors'] = array(
+  'pageviews' => '#ffc107',
+  'date' => '#2f7ed8',
+);
+$handler->display->display_options['style_options']['title'] = 'Pageviews';
+$handler->display->display_options['style_options']['width'] = '';
+$handler->display->display_options['style_options']['height'] = '';
+$handler->display->display_options['style_options']['xaxis_labels_rotation'] = '0';
+$handler->display->display_options['style_options']['yaxis_title'] = '30 Day Report Last Year';
+$handler->display->display_options['style_options']['yaxis_labels_rotation'] = '0';
+$handler->display->display_options['defaults']['style_options'] = FALSE;
+$handler->display->display_options['defaults']['row_plugin'] = FALSE;
+$handler->display->display_options['defaults']['row_options'] = FALSE;
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: Page Tracking: Pageviews */
+$handler->display->display_options['fields']['pageviews']['id'] = 'pageviews';
+$handler->display->display_options['fields']['pageviews']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['pageviews']['field'] = 'pageviews';
+$handler->display->display_options['fields']['pageviews']['label'] = 'Last Year';
+$handler->display->display_options['fields']['pageviews']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['pageviews']['precision'] = '0';
+/* Field: Time: Date */
+$handler->display->display_options['fields']['date']['id'] = 'date';
+$handler->display->display_options['fields']['date']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['date']['field'] = 'date';
+$handler->display->display_options['fields']['date']['hide_empty'] = TRUE;
+$handler->display->display_options['fields']['date']['empty_zero'] = TRUE;
+$handler->display->display_options['fields']['date']['hide_alter_empty'] = FALSE;
+$handler->display->display_options['fields']['date']['date_format'] = 'basic';
+$handler->display->display_options['fields']['date']['second_date_format'] = 'long';
+$handler->display->display_options['defaults']['sorts'] = FALSE;
+/* Sort criterion: Time: Date */
+$handler->display->display_options['sorts']['date']['id'] = 'date';
+$handler->display->display_options['sorts']['date']['table'] = 'google_analytics';
+$handler->display->display_options['sorts']['date']['field'] = 'date';
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: Google Analytics: Start date of report */
+$handler->display->display_options['filters']['start_date']['id'] = 'start_date';
+$handler->display->display_options['filters']['start_date']['table'] = 'google_analytics';
+$handler->display->display_options['filters']['start_date']['field'] = 'start_date';
+$handler->display->display_options['filters']['start_date']['value']['value'] = '-12 months -31 days';
+$handler->display->display_options['filters']['start_date']['value']['type'] = 'offset';
+$handler->display->display_options['filters']['start_date']['group'] = 1;
+$handler->display->display_options['filters']['start_date']['expose']['operator'] = FALSE;
+/* Filter criterion: Google Analytics: End date of report */
+$handler->display->display_options['filters']['end_date']['id'] = 'end_date';
+$handler->display->display_options['filters']['end_date']['table'] = 'google_analytics';
+$handler->display->display_options['filters']['end_date']['field'] = 'end_date';
+$handler->display->display_options['filters']['end_date']['value']['value'] = '-12 months -1 days';
+$handler->display->display_options['filters']['end_date']['value']['type'] = 'offset';
+$handler->display->display_options['filters']['end_date']['group'] = 1;
+$handler->display->display_options['filters']['end_date']['expose']['operator'] = FALSE;
+$handler->display->display_options['parent_display'] = 'arctic_traffic_pageviews';
+
+/* Display: Metrics */
+$handler = $view->new_display('block', 'Metrics', 'arctic_traffic_metrics');
+$handler->display->display_options['defaults']['title'] = FALSE;
+$handler->display->display_options['title'] = 'Metrics';
+$handler->display->display_options['defaults']['style_plugin'] = FALSE;
+$handler->display->display_options['style_plugin'] = 'table';
+$handler->display->display_options['style_options']['columns'] = array(
+  'sessions' => 'sessions',
+  'pageviews' => 'pageviews',
+  'pageviewsPerSession' => 'pageviewsPerSession',
+  'avgSessionDuration' => 'avgSessionDuration',
+  'bounceRate' => 'bounceRate',
+);
+$handler->display->display_options['style_options']['default'] = '-1';
+$handler->display->display_options['style_options']['info'] = array(
+  'sessions' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'pageviews' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'pageviewsPerSession' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'avgSessionDuration' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'bounceRate' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+);
+$handler->display->display_options['defaults']['style_options'] = FALSE;
+$handler->display->display_options['defaults']['row_plugin'] = FALSE;
+$handler->display->display_options['defaults']['row_options'] = FALSE;
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: Session: Sessions */
+$handler->display->display_options['fields']['sessions']['id'] = 'sessions';
+$handler->display->display_options['fields']['sessions']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['sessions']['field'] = 'sessions';
+$handler->display->display_options['fields']['sessions']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['sessions']['hide_empty'] = TRUE;
+$handler->display->display_options['fields']['sessions']['empty_zero'] = TRUE;
+$handler->display->display_options['fields']['sessions']['hide_alter_empty'] = FALSE;
+$handler->display->display_options['fields']['sessions']['precision'] = '0';
+/* Field: Page Tracking: Pageviews */
+$handler->display->display_options['fields']['pageviews']['id'] = 'pageviews';
+$handler->display->display_options['fields']['pageviews']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['pageviews']['field'] = 'pageviews';
+$handler->display->display_options['fields']['pageviews']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['pageviews']['hide_empty'] = TRUE;
+$handler->display->display_options['fields']['pageviews']['empty_zero'] = TRUE;
+$handler->display->display_options['fields']['pageviews']['hide_alter_empty'] = FALSE;
+$handler->display->display_options['fields']['pageviews']['precision'] = '0';
+/* Field: Page Tracking: Pages / Session */
+$handler->display->display_options['fields']['pageviewsPerSession']['id'] = 'pageviewsPerSession';
+$handler->display->display_options['fields']['pageviewsPerSession']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['pageviewsPerSession']['field'] = 'pageviewsPerSession';
+$handler->display->display_options['fields']['pageviewsPerSession']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['pageviewsPerSession']['hide_empty'] = TRUE;
+$handler->display->display_options['fields']['pageviewsPerSession']['empty_zero'] = TRUE;
+$handler->display->display_options['fields']['pageviewsPerSession']['hide_alter_empty'] = FALSE;
+$handler->display->display_options['fields']['pageviewsPerSession']['set_precision'] = TRUE;
+$handler->display->display_options['fields']['pageviewsPerSession']['precision'] = '2';
+/* Field: Session: Avg. Session Duration */
+$handler->display->display_options['fields']['avgSessionDuration']['id'] = 'avgSessionDuration';
+$handler->display->display_options['fields']['avgSessionDuration']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['avgSessionDuration']['field'] = 'avgSessionDuration';
+$handler->display->display_options['fields']['avgSessionDuration']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['avgSessionDuration']['hide_empty'] = TRUE;
+$handler->display->display_options['fields']['avgSessionDuration']['empty_zero'] = TRUE;
+$handler->display->display_options['fields']['avgSessionDuration']['hide_alter_empty'] = FALSE;
+$handler->display->display_options['fields']['avgSessionDuration']['date_format'] = 'custom';
+$handler->display->display_options['fields']['avgSessionDuration']['custom_date_format'] = 'i:s';
+$handler->display->display_options['fields']['avgSessionDuration']['second_date_format'] = 'long';
+/* Field: Session: Bounce Rate */
+$handler->display->display_options['fields']['bounceRate']['id'] = 'bounceRate';
+$handler->display->display_options['fields']['bounceRate']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['bounceRate']['field'] = 'bounceRate';
+$handler->display->display_options['fields']['bounceRate']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['bounceRate']['hide_empty'] = TRUE;
+$handler->display->display_options['fields']['bounceRate']['hide_alter_empty'] = FALSE;
+$handler->display->display_options['fields']['bounceRate']['set_precision'] = TRUE;
+$handler->display->display_options['fields']['bounceRate']['precision'] = '2';
+$handler->display->display_options['fields']['bounceRate']['suffix'] = '%';
+$handler->display->display_options['defaults']['sorts'] = FALSE;
+$handler->display->display_options['block_description'] = 'Arctic: Traffic - Metrics';
+
+/* Display: Top Pages */
+$handler = $view->new_display('block', 'Top Pages', 'arctic_traffic_top_pages');
+$handler->display->display_options['defaults']['title'] = FALSE;
+$handler->display->display_options['title'] = 'Top Pages';
+$handler->display->display_options['defaults']['pager'] = FALSE;
+$handler->display->display_options['pager']['type'] = 'some';
+$handler->display->display_options['pager']['options']['items_per_page'] = '10';
+$handler->display->display_options['pager']['options']['offset'] = '0';
+$handler->display->display_options['defaults']['style_plugin'] = FALSE;
+$handler->display->display_options['style_plugin'] = 'table';
+$handler->display->display_options['style_options']['columns'] = array(
+  'pagePath' => 'pagePath',
+  'pageviews' => 'pageviews',
+  'bounceRate' => 'bounceRate',
+  'exitRate' => 'exitRate',
+  'avgTimeOnPage' => 'avgTimeOnPage',
+);
+$handler->display->display_options['style_options']['default'] = '-1';
+$handler->display->display_options['style_options']['info'] = array(
+  'pagePath' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'pageviews' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'desc',
+    'align' => 'views-align-right',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'bounceRate' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'desc',
+    'align' => 'views-align-right',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'exitRate' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'desc',
+    'align' => 'views-align-right',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'avgTimeOnPage' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'desc',
+    'align' => 'views-align-right',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+);
+$handler->display->display_options['style_options']['sticky'] = TRUE;
+$handler->display->display_options['defaults']['style_options'] = FALSE;
+$handler->display->display_options['defaults']['row_plugin'] = FALSE;
+$handler->display->display_options['defaults']['row_options'] = FALSE;
+$handler->display->display_options['defaults']['header'] = FALSE;
+/* Header: Global: Result summary with an additional token to change the items/page */
+$handler->display->display_options['header']['webform_result']['id'] = 'webform_result';
+$handler->display->display_options['header']['webform_result']['table'] = 'views';
+$handler->display->display_options['header']['webform_result']['field'] = 'webform_result';
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: Page Tracking: Page */
+$handler->display->display_options['fields']['pagePath']['id'] = 'pagePath';
+$handler->display->display_options['fields']['pagePath']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['pagePath']['field'] = 'pagePath';
+$handler->display->display_options['fields']['pagePath']['alter']['make_link'] = TRUE;
+$handler->display->display_options['fields']['pagePath']['alter']['path'] = '[pagePath]';
+$handler->display->display_options['fields']['pagePath']['alter']['absolute'] = TRUE;
+$handler->display->display_options['fields']['pagePath']['alter']['max_length'] = '15';
+$handler->display->display_options['fields']['pagePath']['alter']['word_boundary'] = FALSE;
+$handler->display->display_options['fields']['pagePath']['alter']['trim'] = TRUE;
+$handler->display->display_options['fields']['pagePath']['alter']['html'] = TRUE;
+$handler->display->display_options['fields']['pagePath']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['pagePath']['hide_empty'] = TRUE;
+$handler->display->display_options['fields']['pagePath']['empty_zero'] = TRUE;
+$handler->display->display_options['fields']['pagePath']['hide_alter_empty'] = FALSE;
+/* Field: Page Tracking: Pageviews */
+$handler->display->display_options['fields']['pageviews']['id'] = 'pageviews';
+$handler->display->display_options['fields']['pageviews']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['pageviews']['field'] = 'pageviews';
+$handler->display->display_options['fields']['pageviews']['label'] = 'Views';
+$handler->display->display_options['fields']['pageviews']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['pageviews']['hide_empty'] = TRUE;
+$handler->display->display_options['fields']['pageviews']['empty_zero'] = TRUE;
+$handler->display->display_options['fields']['pageviews']['hide_alter_empty'] = FALSE;
+$handler->display->display_options['fields']['pageviews']['precision'] = '0';
+/* Field: Session: Bounce Rate */
+$handler->display->display_options['fields']['bounceRate']['id'] = 'bounceRate';
+$handler->display->display_options['fields']['bounceRate']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['bounceRate']['field'] = 'bounceRate';
+$handler->display->display_options['fields']['bounceRate']['label'] = 'Bounce %';
+$handler->display->display_options['fields']['bounceRate']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['bounceRate']['hide_empty'] = TRUE;
+$handler->display->display_options['fields']['bounceRate']['hide_alter_empty'] = FALSE;
+$handler->display->display_options['fields']['bounceRate']['set_precision'] = TRUE;
+$handler->display->display_options['fields']['bounceRate']['precision'] = '2';
+$handler->display->display_options['fields']['bounceRate']['suffix'] = '%';
+/* Field: Page Tracking: % Exit */
+$handler->display->display_options['fields']['exitRate']['id'] = 'exitRate';
+$handler->display->display_options['fields']['exitRate']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['exitRate']['field'] = 'exitRate';
+$handler->display->display_options['fields']['exitRate']['label'] = 'Exit %';
+$handler->display->display_options['fields']['exitRate']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['exitRate']['hide_empty'] = TRUE;
+$handler->display->display_options['fields']['exitRate']['empty_zero'] = TRUE;
+$handler->display->display_options['fields']['exitRate']['hide_alter_empty'] = FALSE;
+$handler->display->display_options['fields']['exitRate']['set_precision'] = TRUE;
+$handler->display->display_options['fields']['exitRate']['precision'] = '2';
+$handler->display->display_options['fields']['exitRate']['suffix'] = '%';
+/* Field: Page Tracking: Avg. Time on Page */
+$handler->display->display_options['fields']['avgTimeOnPage']['id'] = 'avgTimeOnPage';
+$handler->display->display_options['fields']['avgTimeOnPage']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['avgTimeOnPage']['field'] = 'avgTimeOnPage';
+$handler->display->display_options['fields']['avgTimeOnPage']['label'] = 'Time on Page';
+$handler->display->display_options['fields']['avgTimeOnPage']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['avgTimeOnPage']['hide_empty'] = TRUE;
+$handler->display->display_options['fields']['avgTimeOnPage']['empty_zero'] = TRUE;
+$handler->display->display_options['fields']['avgTimeOnPage']['hide_alter_empty'] = FALSE;
+$handler->display->display_options['fields']['avgTimeOnPage']['date_format'] = 'custom';
+$handler->display->display_options['fields']['avgTimeOnPage']['custom_date_format'] = 'i:s';
+$handler->display->display_options['fields']['avgTimeOnPage']['second_date_format'] = 'long';
+$handler->display->display_options['defaults']['sorts'] = FALSE;
+/* Sort criterion: Page Tracking: Pageviews */
+$handler->display->display_options['sorts']['pageviews']['id'] = 'pageviews';
+$handler->display->display_options['sorts']['pageviews']['table'] = 'google_analytics';
+$handler->display->display_options['sorts']['pageviews']['field'] = 'pageviews';
+$handler->display->display_options['sorts']['pageviews']['order'] = 'DESC';
+$handler->display->display_options['block_description'] = 'Arctic: Traffic - Top Pages';
+
+/* Display: Top Referrers */
+$handler = $view->new_display('block', 'Top Referrers', 'arctic_traffic_top_referrers');
+$handler->display->display_options['defaults']['title'] = FALSE;
+$handler->display->display_options['title'] = 'Top Referrers';
+$handler->display->display_options['defaults']['pager'] = FALSE;
+$handler->display->display_options['pager']['type'] = 'some';
+$handler->display->display_options['pager']['options']['items_per_page'] = '10';
+$handler->display->display_options['pager']['options']['offset'] = '0';
+$handler->display->display_options['defaults']['style_plugin'] = FALSE;
+$handler->display->display_options['style_plugin'] = 'table';
+$handler->display->display_options['style_options']['columns'] = array(
+  'source' => 'source',
+  'pageviews' => 'pageviews',
+);
+$handler->display->display_options['style_options']['default'] = '-1';
+$handler->display->display_options['style_options']['info'] = array(
+  'source' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'pageviews' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'desc',
+    'align' => 'views-align-right',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+);
+$handler->display->display_options['style_options']['sticky'] = TRUE;
+$handler->display->display_options['defaults']['style_options'] = FALSE;
+$handler->display->display_options['defaults']['row_plugin'] = FALSE;
+$handler->display->display_options['defaults']['row_options'] = FALSE;
+$handler->display->display_options['defaults']['header'] = FALSE;
+/* Header: Global: Result summary with an additional token to change the items/page */
+$handler->display->display_options['header']['webform_result']['id'] = 'webform_result';
+$handler->display->display_options['header']['webform_result']['table'] = 'views';
+$handler->display->display_options['header']['webform_result']['field'] = 'webform_result';
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: Traffic Sources: Source */
+$handler->display->display_options['fields']['source']['id'] = 'source';
+$handler->display->display_options['fields']['source']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['source']['field'] = 'source';
+$handler->display->display_options['fields']['source']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['source']['hide_empty'] = TRUE;
+$handler->display->display_options['fields']['source']['empty_zero'] = TRUE;
+$handler->display->display_options['fields']['source']['hide_alter_empty'] = FALSE;
+/* Field: Page Tracking: Pageviews */
+$handler->display->display_options['fields']['pageviews']['id'] = 'pageviews';
+$handler->display->display_options['fields']['pageviews']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['pageviews']['field'] = 'pageviews';
+$handler->display->display_options['fields']['pageviews']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['pageviews']['hide_empty'] = TRUE;
+$handler->display->display_options['fields']['pageviews']['empty_zero'] = TRUE;
+$handler->display->display_options['fields']['pageviews']['hide_alter_empty'] = FALSE;
+$handler->display->display_options['fields']['pageviews']['precision'] = '0';
+$handler->display->display_options['defaults']['sorts'] = FALSE;
+/* Sort criterion: Page Tracking: Pageviews */
+$handler->display->display_options['sorts']['pageviews']['id'] = 'pageviews';
+$handler->display->display_options['sorts']['pageviews']['table'] = 'google_analytics';
+$handler->display->display_options['sorts']['pageviews']['field'] = 'pageviews';
+$handler->display->display_options['sorts']['pageviews']['order'] = 'DESC';
+$handler->display->display_options['block_description'] = 'Arctic: Traffic - Top Referrers';
+
+/* Display: Pageviews Total (previous year) */
+$handler = $view->new_display('block', 'Pageviews Total (previous year)', 'total_views_last_year');
+$handler->display->display_options['defaults']['title'] = FALSE;
+$handler->display->display_options['defaults']['css_class'] = FALSE;
+$handler->display->display_options['css_class'] = 'view-block-inline';
+$handler->display->display_options['defaults']['style_plugin'] = FALSE;
+$handler->display->display_options['style_plugin'] = 'default';
+$handler->display->display_options['defaults']['style_options'] = FALSE;
+$handler->display->display_options['defaults']['row_plugin'] = FALSE;
+$handler->display->display_options['row_plugin'] = 'fields';
+$handler->display->display_options['defaults']['row_options'] = FALSE;
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: Session: Sessions */
+$handler->display->display_options['fields']['sessions']['id'] = 'sessions';
+$handler->display->display_options['fields']['sessions']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['sessions']['field'] = 'sessions';
+$handler->display->display_options['fields']['sessions']['label'] = '';
+$handler->display->display_options['fields']['sessions']['alter']['trim_whitespace'] = TRUE;
+$handler->display->display_options['fields']['sessions']['alter']['strip_tags'] = TRUE;
+$handler->display->display_options['fields']['sessions']['element_type'] = '0';
+$handler->display->display_options['fields']['sessions']['element_label_type'] = '0';
+$handler->display->display_options['fields']['sessions']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['sessions']['element_wrapper_type'] = '0';
+$handler->display->display_options['fields']['sessions']['element_default_classes'] = FALSE;
+$handler->display->display_options['fields']['sessions']['hide_empty'] = TRUE;
+$handler->display->display_options['fields']['sessions']['empty_zero'] = TRUE;
+$handler->display->display_options['fields']['sessions']['hide_alter_empty'] = FALSE;
+$handler->display->display_options['fields']['sessions']['precision'] = '0';
+$handler->display->display_options['fields']['sessions']['separator'] = '';
+$handler->display->display_options['defaults']['sorts'] = FALSE;
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['filter_groups']['operator'] = 'OR';
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: Google Analytics: Start date of report */
+$handler->display->display_options['filters']['start_date']['id'] = 'start_date';
+$handler->display->display_options['filters']['start_date']['table'] = 'google_analytics';
+$handler->display->display_options['filters']['start_date']['field'] = 'start_date';
+$handler->display->display_options['filters']['start_date']['value']['value'] = '-12 months -31 days';
+$handler->display->display_options['filters']['start_date']['value']['type'] = 'offset';
+$handler->display->display_options['filters']['start_date']['group'] = 1;
+$handler->display->display_options['filters']['start_date']['expose']['operator'] = FALSE;
+/* Filter criterion: Google Analytics: End date of report */
+$handler->display->display_options['filters']['end_date']['id'] = 'end_date';
+$handler->display->display_options['filters']['end_date']['table'] = 'google_analytics';
+$handler->display->display_options['filters']['end_date']['field'] = 'end_date';
+$handler->display->display_options['filters']['end_date']['value']['value'] = '-12 months -1 days';
+$handler->display->display_options['filters']['end_date']['value']['type'] = 'offset';
+$handler->display->display_options['filters']['end_date']['group'] = 1;
+$handler->display->display_options['filters']['end_date']['expose']['operator'] = FALSE;
+$handler->display->display_options['block_description'] = 'Arctic Traffic Pageviews Total';
+$handler->display->display_options['block_caching'] = '8';
+
+/* Display: Pageviews Total */
+$handler = $view->new_display('block', 'Pageviews Total', 'arctic_traffic_pageviews_total');
+$handler->display->display_options['defaults']['title'] = FALSE;
+$handler->display->display_options['title'] = 'Traffic (last 30 days)';
+$handler->display->display_options['defaults']['css_class'] = FALSE;
+$handler->display->display_options['css_class'] = 'view-block-inline';
+$handler->display->display_options['defaults']['style_plugin'] = FALSE;
+$handler->display->display_options['style_plugin'] = 'default';
+$handler->display->display_options['defaults']['style_options'] = FALSE;
+$handler->display->display_options['defaults']['row_plugin'] = FALSE;
+$handler->display->display_options['row_plugin'] = 'fields';
+$handler->display->display_options['defaults']['row_options'] = FALSE;
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: Session: Sessions */
+$handler->display->display_options['fields']['sessions']['id'] = 'sessions';
+$handler->display->display_options['fields']['sessions']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['sessions']['field'] = 'sessions';
+$handler->display->display_options['fields']['sessions']['label'] = '';
+$handler->display->display_options['fields']['sessions']['exclude'] = TRUE;
+$handler->display->display_options['fields']['sessions']['alter']['trim_whitespace'] = TRUE;
+$handler->display->display_options['fields']['sessions']['alter']['strip_tags'] = TRUE;
+$handler->display->display_options['fields']['sessions']['element_type'] = '0';
+$handler->display->display_options['fields']['sessions']['element_label_type'] = '0';
+$handler->display->display_options['fields']['sessions']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['sessions']['element_wrapper_type'] = '0';
+$handler->display->display_options['fields']['sessions']['element_default_classes'] = FALSE;
+$handler->display->display_options['fields']['sessions']['hide_empty'] = TRUE;
+$handler->display->display_options['fields']['sessions']['empty_zero'] = TRUE;
+$handler->display->display_options['fields']['sessions']['hide_alter_empty'] = FALSE;
+$handler->display->display_options['fields']['sessions']['precision'] = '0';
+$handler->display->display_options['fields']['sessions']['separator'] = '';
+/* Field: View: Pageviews (previous year) */
+$handler->display->display_options['fields']['view']['id'] = 'view';
+$handler->display->display_options['fields']['view']['table'] = 'views';
+$handler->display->display_options['fields']['view']['field'] = 'view';
+$handler->display->display_options['fields']['view']['ui_name'] = 'View: Pageviews (previous year)';
+$handler->display->display_options['fields']['view']['label'] = '';
+$handler->display->display_options['fields']['view']['exclude'] = TRUE;
+$handler->display->display_options['fields']['view']['element_type'] = '0';
+$handler->display->display_options['fields']['view']['element_label_type'] = '0';
+$handler->display->display_options['fields']['view']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['view']['element_wrapper_type'] = '0';
+$handler->display->display_options['fields']['view']['element_default_classes'] = FALSE;
+$handler->display->display_options['fields']['view']['hide_empty'] = TRUE;
+$handler->display->display_options['fields']['view']['empty_zero'] = TRUE;
+$handler->display->display_options['fields']['view']['hide_alter_empty'] = FALSE;
+$handler->display->display_options['fields']['view']['view'] = 'arctic_traffic';
+$handler->display->display_options['fields']['view']['display'] = 'total_views_last_year';
+/* Field: PHP: Result */
+$handler->display->display_options['fields']['php']['id'] = 'php';
+$handler->display->display_options['fields']['php']['table'] = 'views';
+$handler->display->display_options['fields']['php']['field'] = 'php';
+$handler->display->display_options['fields']['php']['ui_name'] = 'PHP: Result';
+$handler->display->display_options['fields']['php']['label'] = '';
+$handler->display->display_options['fields']['php']['element_type'] = '0';
+$handler->display->display_options['fields']['php']['element_label_type'] = '0';
+$handler->display->display_options['fields']['php']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['php']['element_wrapper_type'] = '0';
+$handler->display->display_options['fields']['php']['element_default_classes'] = FALSE;
+$handler->display->display_options['fields']['php']['hide_empty'] = TRUE;
+$handler->display->display_options['fields']['php']['empty_zero'] = TRUE;
+$handler->display->display_options['fields']['php']['hide_alter_empty'] = FALSE;
+$handler->display->display_options['fields']['php']['use_php_setup'] = 0;
+$handler->display->display_options['fields']['php']['php_output'] = '<?php
+$curr = (int) $data->sessions;
+$prev =  (int) str_replace(\',\', \'\', strip_tags(trim($data->views_field_view_view)));
+
+$more = \'up\';
+
+$diff = $curr - $prev;
+
+$div = $diff / $curr;
+
+if($prev > $curr){
+$more = \'down\';
+
+$diff = $prev - $curr;
+
+$div = $diff / $prev;
+}
+
+$form_perc = number_format($div *100, 2).\'%\';
+
+$form_curr = number_format($curr, 0);
+
+$return = "<span class=\'current\'>$form_curr</span>, <span class=\'more\'>$more</span> <span class=\'percentage\'>$form_perc</span> from last year";
+
+print $return;
+?>';
+$handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
+$handler->display->display_options['fields']['php']['php_click_sortable'] = '';
+$handler->display->display_options['defaults']['sorts'] = FALSE;
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['filter_groups']['operator'] = 'OR';
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: Google Analytics: Start date of report */
+$handler->display->display_options['filters']['start_date']['id'] = 'start_date';
+$handler->display->display_options['filters']['start_date']['table'] = 'google_analytics';
+$handler->display->display_options['filters']['start_date']['field'] = 'start_date';
+$handler->display->display_options['filters']['start_date']['value']['value'] = '-31 days';
+$handler->display->display_options['filters']['start_date']['value']['type'] = 'offset';
+$handler->display->display_options['filters']['start_date']['group'] = 1;
+$handler->display->display_options['filters']['start_date']['expose']['operator'] = FALSE;
+/* Filter criterion: Google Analytics: End date of report */
+$handler->display->display_options['filters']['end_date']['id'] = 'end_date';
+$handler->display->display_options['filters']['end_date']['table'] = 'google_analytics';
+$handler->display->display_options['filters']['end_date']['field'] = 'end_date';
+$handler->display->display_options['filters']['end_date']['value']['value'] = '-1 day';
+$handler->display->display_options['filters']['end_date']['value']['type'] = 'offset';
+$handler->display->display_options['filters']['end_date']['group'] = 1;
+$handler->display->display_options['filters']['end_date']['expose']['operator'] = FALSE;
+$handler->display->display_options['block_description'] = 'Arctic Traffic Pageviews Total';
+
+/* Display: Overview */
+$handler = $view->new_display('attachment', 'Overview', 'attachment_1');
+$handler->display->display_options['defaults']['title'] = FALSE;
+$handler->display->display_options['title'] = 'Last 30 days Overview';
+$handler->display->display_options['pager']['type'] = 'none';
+$handler->display->display_options['pager']['options']['offset'] = '0';
+$handler->display->display_options['defaults']['style_plugin'] = FALSE;
+$handler->display->display_options['style_plugin'] = 'default';
+$handler->display->display_options['defaults']['style_options'] = FALSE;
+$handler->display->display_options['defaults']['row_plugin'] = FALSE;
+$handler->display->display_options['row_plugin'] = 'fields';
+$handler->display->display_options['defaults']['row_options'] = FALSE;
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: Session: Sessions */
+$handler->display->display_options['fields']['sessions']['id'] = 'sessions';
+$handler->display->display_options['fields']['sessions']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['sessions']['field'] = 'sessions';
+$handler->display->display_options['fields']['sessions']['element_label_type'] = 'h2';
+$handler->display->display_options['fields']['sessions']['element_label_class'] = 'page-header';
+$handler->display->display_options['fields']['sessions']['element_wrapper_type'] = 'div';
+$handler->display->display_options['fields']['sessions']['element_wrapper_class'] = 'col-md-4';
+$handler->display->display_options['fields']['sessions']['precision'] = '0';
+/* Field: Goal Conversions: Goal Completions */
+$handler->display->display_options['fields']['goalCompletionsAll']['id'] = 'goalCompletionsAll';
+$handler->display->display_options['fields']['goalCompletionsAll']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['goalCompletionsAll']['field'] = 'goalCompletionsAll';
+$handler->display->display_options['fields']['goalCompletionsAll']['label'] = 'Leads';
+$handler->display->display_options['fields']['goalCompletionsAll']['element_label_type'] = 'h2';
+$handler->display->display_options['fields']['goalCompletionsAll']['element_label_class'] = 'page-header';
+$handler->display->display_options['fields']['goalCompletionsAll']['element_wrapper_type'] = 'div';
+$handler->display->display_options['fields']['goalCompletionsAll']['element_wrapper_class'] = 'col-md-4';
+$handler->display->display_options['fields']['goalCompletionsAll']['precision'] = '0';
+/* Field: Goal Conversions: Goal Conversion Rate */
+$handler->display->display_options['fields']['goalConversionRateAll']['id'] = 'goalConversionRateAll';
+$handler->display->display_options['fields']['goalConversionRateAll']['table'] = 'google_analytics';
+$handler->display->display_options['fields']['goalConversionRateAll']['field'] = 'goalConversionRateAll';
+$handler->display->display_options['fields']['goalConversionRateAll']['label'] = 'Conversion Rate';
+$handler->display->display_options['fields']['goalConversionRateAll']['element_label_type'] = 'h2';
+$handler->display->display_options['fields']['goalConversionRateAll']['element_label_class'] = 'page-header';
+$handler->display->display_options['fields']['goalConversionRateAll']['element_wrapper_type'] = 'div';
+$handler->display->display_options['fields']['goalConversionRateAll']['element_wrapper_class'] = 'col-md-4';
+$handler->display->display_options['fields']['goalConversionRateAll']['set_precision'] = TRUE;
+$handler->display->display_options['fields']['goalConversionRateAll']['precision'] = '2';
+$handler->display->display_options['fields']['goalConversionRateAll']['suffix'] = '%';
+$handler->display->display_options['displays'] = array(
+  'arctic_traffic_pageviews' => 'arctic_traffic_pageviews',
+  'default' => 0,
+  'arctic_traffic_metrics' => 0,
+  'arctic_traffic_top_pages' => 0,
+  'arctic_traffic_top_referrers' => 0,
+  'total_views_last_year' => 0,
+  'arctic_traffic_pageviews_total' => 0,
+);

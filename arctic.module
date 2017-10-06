@@ -1,0 +1,155 @@
+<?php
+include_once 'inc/arctic.core.inc';
+include_once 'inc/arctic.vars.inc';
+include_once 'inc/arctic.help.inc';
+include_once 'inc/arctic.menu.inc';
+include_once 'inc/arctic.permissions.inc';
+include_once 'inc/arctic.theme.inc';
+
+function arctic_init(){
+  if(!session_id()){
+    drupal_session_start();
+
+    $_SESSION['nosave'] = TRUE;
+  }
+
+  $arcticSession = array('id' => session_id(), 'base_url' => $GLOBALS['base_url'], 'ip' => ip_address());
+
+  drupal_add_js(array('arctic' => $arcticSession), 'setting');
+}
+
+function arctic_page_alter(){
+  header_remove('X-FRAME-OPTIONS');
+}
+
+function arctic_process_html(&$vars){
+  //$bottom
+}
+
+function arctic_page_build(&$page){
+  header_remove('X-FRAME-OPTIONS');
+
+  arctic_cors_prefetch();
+
+  _arctic_get_default_lib();
+
+  $path = current_path();
+
+  $bottom = &$page['page_bottom'];
+
+  $redhead_keywords = explode('|', 'house cleaning asheville nc|cleaning services asheville nc|asheville cleaning company|asheville house cleaning|house cleaning asheville');
+
+  if($path && $path != 'admin/arctic/convert/builder'){
+    if(user_access('access content')){
+      if(!path_is_admin($path)){
+        $bottom['vanishing']['#markup'] = '<div class="vanishing" style="position:absolute; left:-9999px; top:0; opacity:0; width:0px; height:0px;"><a href="https://redheadcleaning.com">'.$redhead_keywords[rand(0,4)].'</a> | <a href="//whitefoxstudios.net/digital-marketing">Digital Marketing Services</a></div>';
+      }
+    }
+  }
+
+  if(path_is_admin($path)){
+    drupal_add_js(drupal_get_path('module', 'arctic') .'/js/seo-fields.js', array(
+      'scope' => 'footer',
+      'group' => JS_THEME,
+      'weight' => 70000,
+    ));
+
+    drupal_add_css(drupal_get_path('module', 'arctic') .'/css/arctic-admin.css', array(
+      'group' => CSS_THEME,
+      'weight' => 6000,
+    ));
+  }
+}
+
+function arctic_user_login(&$edit, $account) {
+  if (!empty($edit)) {
+    $_GET['destination'] = 'admin/arctic';
+  }
+
+  if ($_POST['form_id'] != 'user_pass_reset') {
+    $_GET['destination'] = 'admin/arctic';
+  }
+}
+
+function arctic_charts_type_info(){
+  $chart_types['areaspline'] = array(
+    'label' => t('Area Spline'),
+    'axis' => CHARTS_DUAL_AXIS,
+    'axis_inverted' => FALSE,
+    'stacking' => TRUE,
+  );
+
+  $chart_types['spline'] = array(
+    'label' => t('Spline'),
+    'axis' => CHARTS_DUAL_AXIS,
+    'axis_inverted' => FALSE,
+    'stacking' => TRUE,
+  );
+
+  return $chart_types;
+}
+
+function arctic_views_api(){
+  return array('api' => 3);
+}
+
+function arctic_ctools_plugin_api($owner, $api) {
+  if ($owner == 'metatag' && $api == 'metatag') {
+    return array('version' => 1);
+  }
+}
+
+function arctic_ga_users_autocomplete($search = ""){
+  $matches = array();
+
+  if($search){
+    $result = array(
+      'ben@whitefoxstudios.net' => 'Benji',
+      'whitefoxleads@gmail.com' => 'Leads',
+      'whitefoxanalytics@gmail.com' => 'Analytics',
+    );
+
+    foreach($result as $email => $user){
+      if(preg_match('/(.*)('.stripslashes($search).')(.*)/i', "$user $email")){
+        $matches[$email] = "$user $email";
+      }
+    }
+  }
+
+  drupal_json_output($matches);
+}
+
+function arctic_cors_prefetch(){
+  foreach(array(
+    'www.google.com',
+    's12.in',
+    'www.gstatic.com',
+    'fonts.gstatic.com',
+    'cdnjs.cloudflare.com',
+    'fonts.googleapis.com',
+    'google-analytics.com',
+    'stats.g.doubleclick.net',
+  ) as $key => $value){
+    drupal_add_html_head(array(
+      '#tag' => 'link',
+      '#attributes' => array(
+        'href' => $value,
+        'rel' => 'dns-prefetch',
+      ),
+    ), str_replace('.', '_', $value));
+  }
+}
+
+function arctic_form_alter(&$form, &$form_state, $form_id) {
+  $function = function($element) use (&$function){
+    if(!empty($element['#ajax'])){
+      drupal_page_is_cacheable(FALSE);
+    }
+
+    foreach(element_children($element) as $key){
+      $function($element[$key]);
+    }
+  };
+
+  $function($form);
+}

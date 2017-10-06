@@ -1,0 +1,118 @@
+body{
+  background: #fafafa;
+  border-right: solid 10px #009688;
+}
+
+.carousel .item .page-header {
+  padding: 9px 15px 19px;
+  margin: 0 0 20px;
+  border: none;
+  box-shadow: inset 0 -10px 0 0 rgba(0,0,0,.24);
+  background: #9C27B0;
+  color: rgba(255,255,255,.84);
+}
+
+.carousel .item .page-header .mdl-button.mdl-button--colored:not(.mdl-button--raised) {
+  color: inherit;
+  margin-right: 15px;
+}
+
+.carousel .item .page-header h1 {
+  font-size: 16px;
+  line-height: 36px;
+  margin: 0;
+}
+
+.carousel .item .page-content {
+  padding: 0 15px 15px;
+}
+
+.convert_builder--next-wrapper {
+  padding: 0 15px;
+}
+
+.carousel .item .form-radios .form-radio {
+  display: none;
+}
+
+.carousel .item .form-radio + label.option {
+  display: block;
+  padding: 15px;
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 12px;
+  line-height: normal;
+  margin: 3px;
+  border:solid 1px rgba(0,0,0,0.08);
+  background-color: rgba(255,255,255,1);
+  border-radius:4px;
+  cursor:pointer;
+  transition: border-color .3s ease, background-color .3s ease, color .3s ease;
+}
+
+.carousel .item .form-radio + label.option:hover,
+.carousel .item .form-radio:checked + label.option {
+  background-color: rgba(0,0,0,0.03);
+  border-color: rgba(0,0,0,.09);
+  color: rgba(0,0,0,.64);
+}
+
+.carousel .item .form-radio:checked + label.option {
+  background-color: rgba(0,255,0,.08);
+  border-color: rgba(50,205,50,.1);
+  position:relative;
+}
+
+.carousel .item .form-radio:checked + label.option:after {
+  content: " ";
+  display:block;
+  position:absolute;
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+  border-radius:4px;
+  background-color:rgba(50,205,50,.3);
+  box-shadow:0 0 10px rgba(50,205,50,.9);
+}
+
+.carousel .item .form-radio + label.option[for^='edit-arctic-convert-type']{
+  padding-top:76px;
+  background-size: 64px 48px;
+  background-repeat:no-repeat;
+  background-position:center 15px;
+}
+
+.carousel .item .form-radio + label.option[for$='bar'] {
+  background-image: url('../img/bar.png');
+}
+
+.carousel .item .form-radio + label.option[for$='mat'] {
+  background-image: url('../img/mat.png');
+}
+
+.carousel .item .form-radio + label.option[for$='takeover'] {
+  background-image: url('../img/takeover.png');
+}
+
+.carousel .item .form-radio + label.option[for$='slider'] {
+  background-image: url('../img/slider.png');
+}
+
+.carousel .item .form-radio + label.option[for$='dialog'] {
+  background-image: url('../img/dialog.png');
+}
+
+.carousel .item .form-radio + label.option[for$='sidebar'] {
+  background-image: url('../img/sidebar.png');
+}
+
+.carousel .item .form-radios .form-item {
+  width: 50%;
+  display: block;
+  float: left;
+}
+
+.carousel .item .form-radios {
+  margin: 0 -3px;
+}

@@ -1,0 +1,133 @@
+<?php
+$view = new view();
+$view->name = 'arctic_leads';
+$view->description = '';
+$view->tag = 'default';
+$view->base_table = 'webform_submissions';
+$view->human_name = 'Arctic Leads';
+$view->core = 7;
+$view->api_version = '3.0';
+$view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+/* Display: Master */
+$handler = $view->new_display('default', 'Master', 'default');
+$handler->display->display_options['title'] = 'Leads';
+$handler->display->display_options['use_more_always'] = FALSE;
+$handler->display->display_options['group_by'] = TRUE;
+$handler->display->display_options['access']['type'] = 'none';
+$handler->display->display_options['cache']['type'] = 'none';
+$handler->display->display_options['query']['type'] = 'views_query';
+$handler->display->display_options['exposed_form']['type'] = 'basic';
+$handler->display->display_options['pager']['type'] = 'none';
+$handler->display->display_options['style_plugin'] = 'default';
+$handler->display->display_options['row_plugin'] = 'fields';
+/* Field: COUNT(DISTINCT Webform submissions: Submitted) */
+$handler->display->display_options['fields']['submitted']['id'] = 'submitted';
+$handler->display->display_options['fields']['submitted']['table'] = 'webform_submissions';
+$handler->display->display_options['fields']['submitted']['field'] = 'submitted';
+$handler->display->display_options['fields']['submitted']['group_type'] = 'count_distinct';
+$handler->display->display_options['fields']['submitted']['label'] = '';
+$handler->display->display_options['fields']['submitted']['element_label_colon'] = FALSE;
+
+/* Display: Leads Total */
+$handler = $view->new_display('block', 'Leads Total', 'arctic_leads_total');
+$handler->display->display_options['block_description'] = 'Arctic Leads Total';
+
+/* Display: Submissions */
+$handler = $view->new_display('block', 'Submissions', 'arctic_leads_submissions');
+$handler->display->display_options['defaults']['title'] = FALSE;
+$handler->display->display_options['title'] = 'Leads Submissions';
+$handler->display->display_options['defaults']['group_by'] = FALSE;
+$handler->display->display_options['defaults']['style_plugin'] = FALSE;
+$handler->display->display_options['style_plugin'] = 'table';
+$handler->display->display_options['style_options']['columns'] = array(
+  'counter' => 'counter',
+  'value_1' => 'value_1',
+  'value' => 'value',
+  'submitted' => 'submitted',
+  'view_submission' => 'view_submission',
+);
+$handler->display->display_options['style_options']['default'] = 'submitted';
+$handler->display->display_options['style_options']['info'] = array(
+  'counter' => array(
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 1,
+  ),
+  'value_1' => array(
+    'sortable' => 1,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'value' => array(
+    'sortable' => 1,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 1,
+  ),
+  'submitted' => array(
+    'sortable' => 1,
+    'default_sort_order' => 'desc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 1,
+  ),
+  'view_submission' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+);
+$handler->display->display_options['style_options']['sticky'] = TRUE;
+$handler->display->display_options['defaults']['style_options'] = FALSE;
+$handler->display->display_options['defaults']['row_plugin'] = FALSE;
+$handler->display->display_options['defaults']['row_options'] = FALSE;
+$handler->display->display_options['defaults']['relationships'] = FALSE;
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: Global: View result counter */
+$handler->display->display_options['fields']['counter']['id'] = 'counter';
+$handler->display->display_options['fields']['counter']['table'] = 'views';
+$handler->display->display_options['fields']['counter']['field'] = 'counter';
+$handler->display->display_options['fields']['counter']['label'] = '#';
+$handler->display->display_options['fields']['counter']['counter_start'] = '1';
+$handler->display->display_options['fields']['counter']['reverse'] = 1;
+/* Field: Webform submission data: Value */
+$handler->display->display_options['fields']['value_1']['id'] = 'value_1';
+$handler->display->display_options['fields']['value_1']['table'] = 'webform_submissions';
+$handler->display->display_options['fields']['value_1']['field'] = 'value';
+$handler->display->display_options['fields']['value_1']['label'] = '';
+$handler->display->display_options['fields']['value_1']['format'] = 'text';
+$handler->display->display_options['fields']['value_1']['webform_nid'] = '135';
+$handler->display->display_options['fields']['value_1']['webform_cid'] = '2';
+/* Field: Webform submission data: Value */
+$handler->display->display_options['fields']['value']['id'] = 'value';
+$handler->display->display_options['fields']['value']['table'] = 'webform_submissions';
+$handler->display->display_options['fields']['value']['field'] = 'value';
+$handler->display->display_options['fields']['value']['label'] = '';
+$handler->display->display_options['fields']['value']['webform_nid'] = '135';
+$handler->display->display_options['fields']['value']['webform_cid'] = '1';
+/* Field: Webform submissions: Submitted */
+$handler->display->display_options['fields']['submitted']['id'] = 'submitted';
+$handler->display->display_options['fields']['submitted']['table'] = 'webform_submissions';
+$handler->display->display_options['fields']['submitted']['field'] = 'submitted';
+$handler->display->display_options['fields']['submitted']['label'] = 'Date';
+$handler->display->display_options['fields']['submitted']['date_format'] = 'long';
+$handler->display->display_options['fields']['submitted']['second_date_format'] = 'long';
+/* Field: Webform submissions: View link */
+$handler->display->display_options['fields']['view_submission']['id'] = 'view_submission';
+$handler->display->display_options['fields']['view_submission']['table'] = 'webform_submissions';
+$handler->display->display_options['fields']['view_submission']['field'] = 'view_submission';
+$handler->display->display_options['fields']['view_submission']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['view_submission']['access_check'] = 1;
+$handler->display->display_options['defaults']['sorts'] = FALSE;
+/* Sort criterion: Webform submissions: Submitted */
+$handler->display->display_options['sorts']['submitted']['id'] = 'submitted';
+$handler->display->display_options['sorts']['submitted']['table'] = 'webform_submissions';
+$handler->display->display_options['sorts']['submitted']['field'] = 'submitted';
+$handler->display->display_options['sorts']['submitted']['order'] = 'DESC';
+$handler->display->display_options['block_description'] = 'Arctic Leads Submissions';

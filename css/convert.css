@@ -1,0 +1,112 @@
+html, body {
+  background: transparent none;
+}
+
+body >.convert-body-inner >.convert-wrapper{
+  background: #fafafa;
+}
+
+body.bar .convert-inner >h1,
+body.bar .convert-inner >p{
+  display:block;
+  width:auto;
+  margin:0;
+  padding:15px;
+}
+
+body.bar .convert-title{
+  font-size:24px;
+  line-height:normal;
+}
+
+body.bar .convert-title,
+body.bar .convert-message{
+  float:left;
+}
+
+body.bar .convert-buttons{
+  float:right;
+}
+
+.convert-inner:before,
+.convert-inner:after{
+  content:" ";
+  display:table;
+  clear:both;
+}
+
+body.mat .convert-wrapper{
+  box-shadow:inset 0 -10px 0 0 rgba(0,0,0,.08), 0 2px 50px 0 rgba(0,0,0,.3);
+  background: #C5E1A5;
+}
+
+body.mat .convert-inner{
+  padding:25% 0;
+}
+
+.takeover .convert-body-inner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body.takeover >.convert-body-inner >.convert-wrapper {
+  background: #90CAF9;
+  box-shadow: inset 0 -10px rgba(0,0,0,.12);
+  position: absolute;
+  width: 100%;
+  bottom: 29px;
+  top: 0;
+}
+
+body.takeover .convert-inner {
+  margin: 20% 0 0;
+}
+
+.slider .convert-body-inner {
+  position: fixed;
+  bottom: 44px;
+  right: 15px;
+}
+
+.slider .convert-inner {
+  padding: 30px;
+  box-shadow: inset 0 10px rgba(0,0,0,.12), 0 2px 20px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(0,0,0,.2);
+}
+
+.dialog .convert-body-inner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+  background: rgba(0,0,0,.6);
+}
+
+body.dialog >.convert-body-inner >.convert-wrapper {
+  width: 90%;
+  margin: 20% auto 0;
+  border-radius: 4px;
+  box-shadow: inset 0 10px rgba(0,0,0,.12), 0 20px 60px rgba(0,0,0,.6);
+}
+
+.dialog .convert-inner {
+  padding: 15px 15px 30px;
+}
+
+.sidebar .convert-body-inner {
+  width: 50%;
+  position: fixed;
+  right: 0;
+  height: 100%;
+}
+
+body.sidebar >.convert-body-inner >.convert-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 10px 0 rgba(0,0,0,.12), -12px 0 50px rgba(0,0,0,.6);
+  background: #C5E1A5;
+}

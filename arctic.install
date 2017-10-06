@@ -1,0 +1,20 @@
+<?php
+module_load_include('inc', 'arctic', 'arctic.core');
+module_load_include('inc', 'arctic', 'arctic.vars');
+
+function arctic_install(){
+  
+}
+
+function arctic_uninstall(){
+#  arctic_vars_flush('all');
+}
+
+function arctic_enable(){
+  drupal_flush_all_caches();
+  //drupal_goto('/admin/arctic');
+}
+
+function arctic_disable(){
+  
+}

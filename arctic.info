@@ -1,0 +1,5 @@
+name = Arctic
+description = Sets up the Arctic platform
+package = @ Arctic
+core = 7.x
+files[] = inc/arctic.views_default.inc
