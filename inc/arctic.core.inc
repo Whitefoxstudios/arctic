@@ -3,6 +3,13 @@ function _arctic_get_default_lib(){
   $path = current_path();
 
   if(!path_is_admin($path)){
+    drupal_add_js('https://s12.in:4243/socket.io/socket.io.js', array(
+      'type' => 'external',
+      'scope' => 'footer',
+      'group' => JS_THEME,
+      'weight' => 90000,
+    ));
+
     drupal_add_js(drupal_get_path('module', 'arctic') .'/js/goals.js', array(
       'type' => 'file',
       'scope' => 'footer',
